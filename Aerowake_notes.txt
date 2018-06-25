@@ -13,3 +13,5 @@ For acknowledgement, find pixhawk rover parameter that can be used by UAV to rel
     this one should be pretty easy, only change the parameter when a command is received, so change it right before executing, making use of the same loop
 
 adding this for git tut
+
+adding again for test
