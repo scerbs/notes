@@ -11,3 +11,7 @@ For acknowledgement, find pixhawk rover parameter that can be used by UAV to rel
     fix this by maybe resetting parameter to set value at start of control loop?
   UAV: need to write something within listening loop that will change a parameter if information received
     this one should be pretty easy, only change the parameter when a command is received, so change it right before executing, making use of the same loop
+
+
+  bugs:
+    make sure UAV not receiving command works
