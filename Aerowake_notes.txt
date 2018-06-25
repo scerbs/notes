@@ -1,0 +1,13 @@
+For acknowledgement, find pixhawk rover parameter that can be used by UAV to relay a message back to gcs.
+  Found: ACRO_TURN_RATE
+  if no acknowledgement received, try again (maybe once or twice) and if nothing return a message saying that
+  issue: need to be constant checking if UAV changes a parameter, maybe using a callback?
+  resolved: gcs only needs to check when a user input is sent (so can check inside gcs while loop)
+    control code while loop (inside try statement) at very end, after valid input check
+  how do we check that command has been received?
+    need to keep track of previous state of parameter, if parameter doesn't change to what is expected, we know that command wasn't received
+  what if same command is given twice?
+    when second time a command is given in a row, the gcs will automatically think it has been received (parameter doesn't change)
+    fix this by maybe resetting parameter to set value at start of control loop?
+  UAV: need to write something within listening loop that will change a parameter if information received
+    this one should be pretty easy, only change the parameter when a command is received, so change it right before executing, making use of the same loop
