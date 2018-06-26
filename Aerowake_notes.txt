@@ -15,3 +15,4 @@ For acknowledgement, find pixhawk rover parameter that can be used by UAV to rel
 
   bugs:
     make sure UAV not receiving command works
+    current implementation uses sleepign to account for radio delay, may need a better way to go around this.  Set up a listener?
