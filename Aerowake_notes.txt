@@ -15,4 +15,16 @@ For acknowledgement, find pixhawk rover parameter that can be used by UAV to rel
 
   bugs:
     make sure UAV not receiving command works
-    current implementation uses sleepign to account for radio delay, may need a better way to go around this.  Set up a listener?
+    current implementation uses sleeping to account for radio delay, may need a better way to go around this.  Set up a listener?
+
+TODO for initial script
+  figure out rotate_mission.py, need to make it return something instead of writing to a file
+  figure out how to input a degree rotation in gcs terminal, already added to allowed commands str but need a way to read it
+  figure out how to interpret input, need to be able to constantly rotate mission
+    for this, do we want to reset heading each time, or change it from magnetic north?
+      i.e. if we rotate by 15 degress, then want to rotate again by 15, do we input 15 again or 30?
+        ask brandon about this one, as long as it is defined i doubt he will have a preference
+    this might be easy because we can just input the same mission, then import rotate_mission.py for both uav and gcs so when gcs sends a command, the mission rotates the same for both
+  figure out how we want to handle input
+    do we want to use a listener or just an input command?
+      command might make more sense, as it is something that should be done in sequence
