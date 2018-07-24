@@ -1,20 +1,11 @@
-For acknowledgement, find pixhawk rover parameter that can be used by UAV to relay a message back to gcs.
-  Found: ACRO_TURN_RATE
-  if no acknowledgement received, try again (maybe once or twice) and if nothing return a message saying that
-  issue: need to be constant checking if UAV changes a parameter, maybe using a callback?
-  resolved: gcs only needs to check when a user input is sent (so can check inside gcs while loop)
-    control code while loop (inside try statement) at very end, after valid input check
-  how do we check that command has been received?
-    need to keep track of previous state of parameter, if parameter doesn't change to what is expected, we know that command wasn't received
-  what if same command is given twice?
-    when second time a command is given in a row, the gcs will automatically think it has been received (parameter doesn't change)
-    fix this by maybe resetting parameter to set value at start of control loop?
-  UAV: need to write something within listening loop that will change a parameter if information received
-    this one should be pretty easy, only change the parameter when a command is received, so change it right before executing, making use of the same loop
+active_mission_rotate:
+    things to add:
+        find bearing using current gps locations
+        make sure code is easily modifiable to allow for active mission rotation given changing gps locations
+            for this one it might be tough to actually do, because we will have to compare real locations with expected locations to decided whether or not we need to rotate
+        should we add a way to check current missio/bearing? or just leave that for a GUI
 
-
-  bugs:
-    make sure UAV not receiving command works
-    current implementation uses sleepign to account for radio delay, may need a better way to go around this.  Set up a listener?
-
-
+    bugs:
+        repeated rotate commands do not go through to the UAV, so gcs and UAV will have different bearings
+            is this the behavior we want? might not make sense to continually input rotate commands
+                this will become a problem if we implement a contiuous bearing check/rotate functionality, unless we find a different way to rotate then sending a command from gcs, could just be a local thing on the UAV that sends updated bearing to gcs 
